@@ -1,8 +1,28 @@
-// import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-// const taskSchema=new Schema({
+const taskSchema=new Schema({
+    title:{
+        type:String,
+        required:true,
+    },
+    content:{
+        type:String,
+        required:true,
+    },
+    addedDate:{
+        type:Date,
+        required:true,
+        default:Date.now()
+    },
+    status:{
+        type:String,
+        enum:["Pending","Completed","Not Started"],
+        default:"Not Started"
+    },
+    userId:{
+        type:mongoose.ObjectId,
+        required:true
+    }
+})
 
-
-// })
-
-// export const Task=mongoose.models.tasks || mongoose.model("tasks",taskSchema)
+export const Task=mongoose.models.tasks || mongoose.model("tasks",taskSchema)
