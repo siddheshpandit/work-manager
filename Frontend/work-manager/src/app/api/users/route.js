@@ -1,42 +1,45 @@
 import { connectDb } from "@/helper/db";
-import { NextResponse } from "next/server"
+import { User } from "@/models/user";
+import { NextResponse } from "next/server";
 
 connectDb();
-export function GET(request){
-    const users=[{
-        name:"Siddhesh",
-        phone:7776041423,
-        course:'Java'
-    },
-    {
-        name:"Viru",
-        phone:777604133,
-        course:'Swift'
-    },
-    {
-        name:"Apoorva",
-        phone:7776041424,
-        course:'Angular'
-    },
-]
-
-    return NextResponse.json(users);
+export async function GET(request) {
+  let users=[]
+  try {
+    users=await User.find().select("-password");
+  } catch (error) {
+    return NextResponse.json({
+      message:"Failed to Get Users",
+      status:false
+    })
+  }
+  return NextResponse.json(users);
 }
 
-export function POST(){
+export async function POST(request) {
+  const { name, email, password, about, profileUrl } = await request.json();
 
+  // console.log({ name, email, password, about, profileUrl });
+  const user = new User({
+    name,
+    email,
+    password,
+    about,
+    profileUrl,
+  });
+  console.log(user);
+  try {
+    // Save User to database
+    const createdUser = await user.save();
+    const response = NextResponse.json(user, {
+      status: 201,
+    });
+    return response;
+  } catch (error) {
+    return NextResponse.json({
+      message: "Failed to Create User",
+      status: false,
+    });
+  }
 }
 
-export function DELETE(){
-    console.log("Delete api");
-    return NextResponse.json(
-        {
-            message:"Deleted",
-            status:true
-        },
-        {
-            status:201,
-            statusText:"Deleted"
-        }
-    )
-}

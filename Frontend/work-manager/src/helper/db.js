@@ -8,16 +8,16 @@ export const connectDb=async()=>{
         console.log("DB Connection");
 
         // Testing database
-        const uuser=new User({
-            name:"Siddhesh",
-            email:"s@gmail.com",
-            password:"siddhesh",
-            about:"testing"
-        })
+        // const uuser=new User({
+        //     name:"Siddhesh",
+        //     email:"s@gmail.com",
+        //     password:"siddhesh",
+        //     about:"testing"
+        // })
 
-        await uuser.save();
-        console.log("User is saved");
-        console.log(connection.host);
+        // await uuser.save();
+        // console.log("User is saved");
+        // console.log(connection.host);
     } catch (error) {
         console.log("Failed to connect with database");
         console.log(error);
