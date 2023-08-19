@@ -1,14 +1,13 @@
 import React from 'react'
+import AddTask from './AddTask'
 
-export const metadata={
-    title:"Add-Task: Work Manager"
-}
-const AddTask = () => {
+export const metadata = {
+  title: "Add-Task: Work Manager",
+};
+const addTaskPage = () => {
   return (
-    <div>
-        <h1 className=''>Add Task</h1>
-    </div>
+    <AddTask/>
   )
 }
 
-export default AddTask
+export default addTaskPage
