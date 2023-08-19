@@ -29,14 +29,12 @@ For eg. If in a component we want to perform some client side events like button
 **When to use Server Side Components and Client Side Components**
 Next js recommends using server side components until we have specific use case for client components.
 
-What do you need to do?	Server Component	Client Component
-
-1. Fetch data.		Server Component
-2. Access backend resources (directly)		Server Component
-3. Keep sensitive information on the server (access tokens, API keys, etc)		Server Component
-4. Keep large dependencies on the server / Reduce client-side JavaScript		Server Component
-5. Add interactivity and event listeners (onClick(), onChange(), etc)		Client Component
-6. Use State and Lifecycle Effects (useState(), useReducer(), useEffect(), etc)		Client Component
-7. Use browser-only APIs		Client Component
-8. Use custom hooks that depend on state, effects, or browser-only APIs		Client Component
-9. Use React Class components		Client Component
+1. Fetch data.->Server Component
+2. Access backend resources (directly)->Server Component
+3. Keep sensitive information on the server (access tokens, API keys, etc)->Server Component
+4. Keep large dependencies on the server / Reduce client-side JavaScript->Server Component
+5. Add interactivity and event listeners (onClick(), onChange(), etc)->Client Component
+6. Use State and Lifecycle Effects (useState(), useReducer(), useEffect(), etc)	-> Client Component
+7. Use browser-only APIs -> Client Component
+8. Use custom hooks that depend on state, effects, or browser-only APIs	-> Client Component
+9. Use React Class components	-> Client Component
