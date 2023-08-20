@@ -9,7 +9,7 @@ const CustomNavbar = () => {
     <nav className="bg-blue-600 h-14 py-2 px-10 flex justify-between items-center text-lg">
       <div>
         <h1 className="text-2xl font-semibold">
-          <a href="">Work Manager</a>
+          <Link href={"/"}>Work Manager</Link>
         </h1>
       </div>
       <div>
@@ -31,7 +31,7 @@ const CustomNavbar = () => {
             <a href="">Login</a>
           </li>
           <li>
-            <Link href={"/signup"}>Sign Up</Link>
+            <Link href={"/sign-up"}>Sign Up</Link>
           </li>
         </ul>
       </div>
