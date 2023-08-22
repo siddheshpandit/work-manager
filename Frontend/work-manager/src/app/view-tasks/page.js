@@ -1,11 +1,10 @@
 import React from 'react'
+import ViewTasks from './ViewTasks';
 
-const ViewTasks = () => {
+const page = () => {
   return (
-    <div>
-      <h1>View Tasks</h1>
-      </div>
+    <ViewTasks/>
   )
 }
 
-export default ViewTasks;
+export default page;

@@ -6,3 +6,8 @@ export async function addTask(task){
     return result;
 }
 
+
+export async function getTasksByUserId(userId){
+    const result=await httpAxios.get(`/api/users/${userId}/tasks`).then((response)=> response.data);
+    return result;
+}

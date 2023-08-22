@@ -1,10 +1,13 @@
 "use client";
 
 import { addUser } from "@/services/userService";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
+
+  const router=useRouter();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -39,6 +42,8 @@ const SignUp = () => {
         profileUrl:
           "https://www.pngarts.com/files/10/Default-Profile-Picture-PNG-Transparent-Image.png",
       });
+      console.log("Redirecting");
+      router.push("/profile/user");
     } catch (error) {
       console.log(error);
       toast.error("Failed to Register", {

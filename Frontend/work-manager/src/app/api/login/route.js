@@ -3,13 +3,14 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { connectDb } from "@/helper/db";
-// connectDb();
+
+connectDb();
 export async function POST(request){
 
     const {email,password}=await request.json();
-    // console.log(email);
+    console.log(email);
     try {
-
+        console.log("inside login");
         // 1. Get User
         const user=await User.findOne({
             email:email
@@ -22,7 +23,7 @@ export async function POST(request){
         // 2. Check Password
         const matched=bcrypt.compareSync(password,user.password)
         if(!matched){
-            throw new Error("Password not matched");
+            throw new Error("Wrong Password");
         }
 
         // 3. Create Token
@@ -30,16 +31,17 @@ export async function POST(request){
             _id:user._id,
             name:user.name
         },process.env.JWT_KEY)
-        // console.log(token);
+        console.log(token);
         const response=NextResponse.json({
             message:"Login Successful",
-            success:true
+            success:true,
+            user:user
         })
         response.cookies.set("authToken",token,{
             expiresIn:"1d",
             httpOnly:true
         })
-        return response
+        return response;
     } catch (error) {
         return NextResponse.json({
             message:error.message,

@@ -1,27 +1,54 @@
 "use client";
 
-import React, { useState } from "react";
+import UserContext from "@/context/userContext";
+import { login } from "@/services/userService";
+import { useRouter } from "next/navigation";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 const Login = () => {
-    const loginUser=(event)=>{
+
+    const router=useRouter();
+    const context=useContext(UserContext);
+
+    const loginUser= async(event)=>{
         event.preventDefault();
         console.log(loginData);
         if(loginData.email.trim()==""){
             toast.info("Please Enter your mail",{
                 position:"top-center"
             });
+            return;
         }
-    }
+
+        try {
+          console.log("Inside");
+            const result=await login(loginData);
+            console.log("Login Data: "+result);
+            
+            toast.success("Logged In",{
+                position:'top-center'
+            })
+            //Redirect
+            console.log("Redirecting");
+            context.setUser(result.user);
+            router.push("/profile/user")
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message,{
+                position:"top-center"
+            })
+        }
+    };
 
     const [loginData, setLoginData] = useState({
         email:'',
         password:''
-    })
+    });
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-4 col-start-5 p-5 shadow-sm">
-        <h1 className="text-3xl text-center">Sign Up</h1>
+        <h1 className="text-3xl text-center">Login</h1>
         <form onSubmit={loginUser}>
           <div className="mt-3">
             <label

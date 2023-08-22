@@ -6,7 +6,7 @@ export const connectDb=async()=>{
         })
         console.log("DB Connection");
 
-        // Testing database
+        // Testing databas
         // const uuser=new User({
         //     name:"Siddhesh",
         //     email:"s@gmail.com",
